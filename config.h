@@ -9,28 +9,28 @@ static const char *fonts[]         = { "DejaVu Sans:size=8:style=Bold" };
 static const char dmenufont[]      = "DejaVu Sans:size=8";
 static const char col_white[]      = "#c5cdd9";
 static const char col_black[]      = "#2c2e34";
+static const char col_gray[]       = "#5a5f68"; 
 static const char col_magenta[]    = "#d38aea";
 static const char *colors[][3]     = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_white, col_black,   col_black   },
-	[SchemeSel]  = { col_black, col_white, col_magenta },
+	/*               fg         bg         border      */
+	[SchemeNorm] = { col_gray,  col_black, col_black   },
+	[SchemeSel]  = { col_white, col_black, col_magenta },
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "", "", "8", "9" };
+static const char *tags[] = { "", "", "", "", "", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class instance  title       tags mask     isfloating   monitor */
-	//{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ NULL, "chromium",   NULL,       1 << 1,       0,           1 },
-	{ NULL, "nvim",       NULL,       1,            0,           0 },
-	{ NULL, "st",         NULL,       1 << 2,       0,           0 },
-	{ NULL, "matterhorn", NULL,       1 << 3,       0,           0 },
-	{ NULL, "k9s",        NULL,       1 << 5,       0,           0 }, 
+	/* class instance           title tags mask     isfloating   monitor */
+	{ NULL, "chromium",         NULL, 1 << 1,       0,           -1 },
+	{ NULL, "nvim",             NULL, 1,            0,           -1 },
+	{ NULL, "matterhorn",       NULL, 1 << 3,       0,           -1 },
+	{ NULL, "k9s",              NULL, 1 << 5,       0,           -1 },
+	{ NULL, "web.whatsapp.com", NULL, 1 << 3,       0,           -1 },
 };
 
 /* layout(s) */
@@ -52,9 +52,6 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
-
-/* helper for spawning shell commands in the pre dwm-5.0 fashion */
-//#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
