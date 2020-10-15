@@ -11,14 +11,15 @@ static const char col_white[]      = "#c5cdd9";
 static const char col_black[]      = "#2c2e34";
 static const char col_gray[]       = "#5a5f68";
 static const char col_magenta[]    = "#d38aea";
-static const char col_red[]        = "#ff0000";
-static const char col_yellow[]     = "#ffff00";
+static const char col_red[]        = "#ec7279";
+static const char col_yellow[]     = "#deb974";
 static const char *colors[][3]     = {
-	/*                 fg         bg          border      */
-	[SchemeNorm]   = { col_gray,  col_black,  col_black   },
-	[SchemeSel]    = { col_white, col_black,  col_magenta },
-	[SchemeWarn]   = { col_black, col_yellow, col_red     },
-	[SchemeUrgent] = { col_white, col_red,    col_red     },
+	/*                 fg           bg          border      */
+	[SchemeNorm]   = { col_gray,    col_black,  col_black   },
+	[SchemeSel]    = { col_white,   col_black,  col_magenta },
+	[SchemeWarn]   = { col_black,   col_yellow, col_red     },
+	[SchemeUrgent] = { col_red,     col_black,  col_red     },
+	[SchemeInfo]   = { col_magenta, col_black,  col_red     },
 };
 
 /* tagging */
