@@ -9,12 +9,16 @@ static const char *fonts[]         = { "DejaVu Sans:size=8:style=Bold" };
 static const char dmenufont[]      = "DejaVu Sans:size=8";
 static const char col_white[]      = "#c5cdd9";
 static const char col_black[]      = "#2c2e34";
-static const char col_gray[]       = "#5a5f68"; 
+static const char col_gray[]       = "#5a5f68";
 static const char col_magenta[]    = "#d38aea";
+static const char col_red[]        = "#ff0000";
+static const char col_yellow[]     = "#ffff00";
 static const char *colors[][3]     = {
-	/*               fg         bg         border      */
-	[SchemeNorm] = { col_gray,  col_black, col_black   },
-	[SchemeSel]  = { col_white, col_black, col_magenta },
+	/*                 fg         bg          border      */
+	[SchemeNorm]   = { col_gray,  col_black,  col_black   },
+	[SchemeSel]    = { col_white, col_black,  col_magenta },
+	[SchemeWarn]   = { col_black, col_yellow, col_red     },
+	[SchemeUrgent] = { col_white, col_red,    col_red     },
 };
 
 /* tagging */
