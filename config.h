@@ -33,6 +33,7 @@ static const Rule rules[] = {
 	/* class instance           title tags mask     isfloating   monitor */
 	{ NULL, "chromium",         NULL, 1 << 1,       0,           -1 },
 	{ NULL, "nvim",             NULL, 1,            0,           -1 },
+	{ NULL, "bench",            NULL, 1 << 2,       0,           -1 },
 	{ NULL, "matterhorn",       NULL, 1 << 3,       0,           -1 },
 	{ NULL, "web.whatsapp.com", NULL, 1 << 3,       0,           -1 },
 };
