@@ -13,13 +13,13 @@ static const char col_black[]      = "#2c2e34";
 static const char col_gray[]       = "#414550";
 static const char col_magenta[]    = "#d38aea";
 static const char *colors[][3]     = {
-	/*                 fg         bg         border      */
-	[SchemeNorm]   = { col_gray,  col_black, col_black   },
-	[SchemeSel]    = { col_white, col_black, col_magenta },
+	/*                 fg         bg         border    */
+	[SchemeNorm]   = { col_gray,  col_black, col_black },
+	[SchemeSel]    = { col_white, col_black, col_white },
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "" };
+static const char *tags[] = { "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -35,9 +35,10 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
-static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
+static const float mfact        = 0.55; /* factor of master area size [0.05..0.95] */
+static const int nmaster        = 1;    /* number of clients in master area */
+static const int resizehints    = 0;    /* 1 means respect size hints in tiled resizals */
+static const int lockfullscreen = 1;    /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -101,6 +102,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_5,                      4)
 	TAGKEYS(                        XK_6,                      5)
 	{ MODKEY|ShiftMask,             XK_Escape, quit,           {0} },
+	{ MODKEY,                       XK_plus,  scratchpad_show, {0} },
+	{ MODKEY|ShiftMask,             XK_plus,  scratchpad_hide, {0} },
+	{ MODKEY,                       XK_minus,scratchpad_remove,{0} },
 };
 
 /* button definitions */
