@@ -99,8 +99,6 @@ static Key keys[] = {
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
 	{ MODKEY|ShiftMask,             XK_Escape, quit,           {0} },
 	{ MODKEY,                       XK_plus,  scratchpad_show, {0} },
 	{ MODKEY|ShiftMask,             XK_plus,  scratchpad_hide, {0} },
