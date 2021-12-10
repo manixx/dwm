@@ -6,20 +6,24 @@ static const unsigned int gappx    = 7;  /* gaps between windows */
 static const unsigned int snap     = 32; /* snap pixel */
 static const int showbar           = 1;  /* 0 means no bar */
 static const int topbar            = 1;  /* 0 means bottom bar */
+static const int horizpadbar       = 2;  /* horizontal padding for statusbar */
+static const int vertpadbar        = 2;  /* vertical padding for statusbar */
 static const char *fonts[]         = { "DejaVu Sans:size=8:style=Bold" };
 static const char dmenufont[]      = "DejaVu Sans:size=8";
 static const char col_white[]      = "#c5cdd9";
 static const char col_black[]      = "#2c2e34";
 static const char col_gray[]       = "#414550";
 static const char col_magenta[]    = "#d38aea";
-static const char col_red[]        = "#ff0000";
-static const char col_yellow[]     = "#ffff00";
+static const char col_red[]        = "#ec7279";
+static const char col_yellow[]     = "#deb974";
 static const char *colors[][3]     = {
 	/*                 fg         bg         border    */
-	[SchemeNorm]   = { col_gray,  col_black, col_black },
-	[SchemeSel]    = { col_white, col_black, col_white },
-	[SchemeWarn]   = { col_black, col_yellow, col_red  },
-	[SchemeUrgent] = { col_white, col_red,    col_red  },
+	[SchemeNorm]   = { col_gray,  col_black,  col_black }, /* tags normal */
+	[SchemeSel]    = { col_white, col_black,  col_white }, /* tags selected */
+	[SchemeBar]    = { col_white, col_gray,   col_black }, /* bar selected mon */
+	[SchemeStatic] = { col_white, col_black,  col_black }, /* status */
+	[SchemeWarn]   = { col_black, col_yellow, col_red   }, /* custom status color */
+	[SchemeUrgent] = { col_red,   col_black,  col_red   }, /* custom status color */
 };
 
 /* tagging */
@@ -60,15 +64,15 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { 
-	"dmenu-desktop", 
-	"-m", dmenumon, 
-	"-fn", dmenufont, 
-	"-nb", col_black, 
-	"-nf", col_white, 
-	"-sb", col_white, 
-	"-sf", col_black, 
-	NULL 
+static const char *dmenucmd[] = {
+	"dmenu-desktop",
+	"-m", dmenumon,
+	"-fn", dmenufont,
+	"-nb", col_black,
+	"-nf", col_white,
+	"-sb", col_white,
+	"-sf", col_black,
+	NULL
 };
 static const char *termcmd[]  = { "st", NULL };
 
@@ -109,13 +113,13 @@ static Key keys[] = {
 };
 
 /* button definitions */
-/* click can be 
- * 		ClkTagBar, 
- * 		ClkLtSymbol, 
- * 		ClkStatusText, 
- * 		ClkWinTitle, 
+/* click can be
+ * 		ClkTagBar,
+ * 		ClkLtSymbol,
+ * 		ClkStatusText,
+ * 		ClkWinTitle,
  * 		ClkClientWin,
- * 		ClkRootWin 
+ * 		ClkRootWin
  */
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
