@@ -24,6 +24,7 @@
 #include <locale.h>
 #include <signal.h>
 #include <stdarg.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -719,6 +720,9 @@ drawbar(Monitor *m)
 	int tx = 0;
 	char ctmp;
 	Client *c;
+	int lpad = 7;
+	int rpad = 3;
+	bool first = true;
 
 	if (!m->showbar)
 		return;
@@ -726,13 +730,14 @@ drawbar(Monitor *m)
 	/* draw status first so it can be overdrawn by tags later */
 	if (m == selmon || 1) { /* status is only drawn on selected monitor */
 		drw_setscheme(drw, scheme[SchemeStatic]);
-		tw = TEXTW(stext);
+		tw = TEXTW(ts) - lrpad + lpad + rpad; /* 10px padding */
 		while (1) {
-			if ((unsigned int)*ts > LENGTH(colors)) { ts++; continue ; }
+			if ((unsigned int)*ts > LENGTH(colors)) { ts++; continue; }
 			ctmp = *ts;
 			*ts = '\0';
-			drw_text(drw, m->ww - tw + tx, 0, tw - tx, bh, lrpad / 1.5, tp, 0);
-			tx += TEXTW(tp) -lrpad;
+			drw_text(drw, m->ww - tw + tx + (first ? 0 : lpad), 0, tw - tx, bh, first ? lpad : 0, tp, 0);
+			first = false;
+			tx += TEXTW(tp) - lrpad;
 			if (ctmp == '\0') { break; }
 			drw_setscheme(drw, scheme[(unsigned int)(ctmp-1)]);
 			*ts = ctmp;
@@ -1705,8 +1710,8 @@ setup(void)
 	drw = drw_create(dpy, screen, root, sw, sh);
 	if (!drw_fontset_create(drw, fonts, LENGTH(fonts)))
 		die("no fonts could be loaded.");
-	lrpad = drw->fonts->h + horizpadbar;
-	bh = drw->fonts->h + vertpadbar;
+	lrpad = drw->fonts->h;
+	bh = drw->fonts->h + 2;
 	updategeom();
 	/* init atoms */
 	utf8string = XInternAtom(dpy, "UTF8_STRING", False);
