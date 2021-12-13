@@ -6,8 +6,6 @@ static const unsigned int gappx    = 7;  /* gaps between windows */
 static const unsigned int snap     = 32; /* snap pixel */
 static const int showbar           = 1;  /* 0 means no bar */
 static const int topbar            = 1;  /* 0 means bottom bar */
-static const int horizpadbar       = 2;  /* horizontal padding for statusbar */
-static const int vertpadbar        = 2;  /* vertical padding for statusbar */
 static const char *fonts[]         = { "DejaVu Sans:size=8:style=Bold" };
 static const char dmenufont[]      = "DejaVu Sans:size=8";
 static const char col_white[]      = "#c5cdd9";
