@@ -8,8 +8,9 @@ static const int showbar           = 1;  /* 0 means no bar */
 static const int topbar            = 1;  /* 0 means bottom bar */
 static const char *fonts[]         = {
 	"Bitstream Vera Sans:size=8:style=Bold",
-	"Font Awesome 5 Free,Font Awesome 5 Free Regular:size=6:style=Regular",
 	"Font Awesome 5 Free,Font Awesome 5 Free Solid:size=6:style=Solid",
+	"Font Awesome 5 Free,Font Awesome 5 Free Regular:size=6:style=Regular",
+	"Font Awesome 5 Brands,Font Awesome 5 Brands Regular:size=6style=Regular",
 };
 static const char dmenufont[]      = "Bitstream Vera Sans:size=8";
 static const char col_white[]      = "#c5cdd9";
