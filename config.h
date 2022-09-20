@@ -6,7 +6,11 @@ static const unsigned int gappx    = 7;  /* gaps between windows */
 static const unsigned int snap     = 32; /* snap pixel */
 static const int showbar           = 1;  /* 0 means no bar */
 static const int topbar            = 1;  /* 0 means bottom bar */
-static const char *fonts[]         = { "Bitstream Vera Sans:size=8:style=Bold" };
+static const char *fonts[]         = {
+	"Bitstream Vera Sans:size=8:style=Bold",
+	"Font Awesome 5 Free,Font Awesome 5 Free Regular:size=6:style=Regular",
+	"Font Awesome 5 Free,Font Awesome 5 Free Solid:size=6:style=Solid",
+};
 static const char dmenufont[]      = "Bitstream Vera Sans:size=8";
 static const char col_white[]      = "#c5cdd9";
 static const char col_black[]      = "#2c2e34";
