@@ -67,10 +67,8 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = {
 	"dmenu-desktop",
-	"-m", dmenumon,
 	"-fn", dmenufont,
 	"-nb", col_black,
 	"-nf", col_white,
