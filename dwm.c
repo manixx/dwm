@@ -92,6 +92,7 @@ struct Client {
 	int basew, baseh, incw, inch, maxw, maxh, minw, minh, hintsvalid;
 	int bw, oldbw;
 	unsigned int tags;
+	unsigned int focustags;
 	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen, cantfocus;
 	Client *next;
 	Client *snext;
@@ -821,6 +822,9 @@ expose(XEvent *e)
 void
 focus(Client *c)
 {
+	Client *i;
+	unsigned int focusmask = selmon->tagset[selmon->seltags] & TAGMASK;
+
 	if (!c || !ISVISIBLE(c))
 		for (c = selmon->stack; c && !ISVISIBLE(c); c = c->snext);
 	if (selmon->sel && selmon->sel != c)
@@ -841,6 +845,10 @@ focus(Client *c)
 		XSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);
 		XDeleteProperty(dpy, root, netatom[NetActiveWindow]);
 	}
+	for (i = selmon->clients; i; i = i->next)
+		i->focustags &= ~focusmask;
+	if (c)
+		c->focustags |= focusmask;
 	selmon->sel = c;
 	drawbars();
 }
@@ -2268,12 +2276,16 @@ updatewmhints(Client *c)
 void
 view(const Arg *arg)
 {
+	Client *c;
+
 	if ((arg->ui & TAGMASK) == selmon->tagset[selmon->seltags])
 		return;
 	selmon->seltags ^= 1; /* toggle sel tagset */
 	if (arg->ui & TAGMASK)
 		selmon->tagset[selmon->seltags] = arg->ui & TAGMASK;
-	focus(NULL);
+	for (c = selmon->stack; c && (!(c->focustags & selmon->tagset[selmon->seltags])
+	|| !ISVISIBLE(c) || c->cantfocus); c = c->snext);
+	focus(c);
 	arrange(selmon);
 }
 
